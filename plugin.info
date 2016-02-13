@@ -1,0 +1,7 @@
+name: Core plugin
+authors: Gobrosse
+version: 1.0
+main: xyz.chunkstories.coreplugin.CorePlugin
+
+command: demo
+command: tp
