@@ -1,4 +1,4 @@
-package xyz.chunkstories.coreplugin.CorePlugin;
+package xyz.chunkstories.coreplugin;
 
 import io.xol.chunkstories.api.plugin.ChunkStoriesPlugin;
 import io.xol.chunkstories.api.plugin.server.Command;
@@ -22,21 +22,32 @@ public class CorePlugin extends ChunkStoriesPlugin {
 		if ((e instanceof Player)) {
 			Player player = (Player) e;
 			if (cmd.equals("clear")) {
-				player.sendMessage("#FF969BRemoving " + player.getControlledEntity().inventory.size()
+				player.sendMessage("#FF969BRemoving " + player.getControlledEntity().getInventory().size()
 						+ " items from your inventory.");
-				player.getControlledEntity().inventory.clear();
+				player.getControlledEntity().getInventory().clear();
 			} else if (cmd.equals("give")) {
 				if (a.length == 0) {
 					player.sendMessage("#FF969BSyntax : /give <item> [amount] [to]");
 					return true;
 				}
 				Item type = null;
+				String[] info = null;
 				int amount = 1;
 				Player to = player;
-				type = ItemsList.getItemByName(a[0]);
+				String itemCall = a[0];
+				if(itemCall.contains(":"))
+				{
+					String[] itemCallS = itemCall.split(":");
+					itemCall = itemCallS[0];
+					info = new String[itemCallS.length - 1];
+					for(int i = 0; i < itemCallS.length - 1; i++)
+						info[i] = itemCallS[i+1];
+				}
+				
+				type = ItemsList.getItemByName(itemCall);
 				if (type == null) {
 					try{
-						type = ItemsList.get(Integer.parseInt(a[0]));
+						type = ItemsList.get(Integer.parseInt(itemCall));
 					}
 					catch(NumberFormatException ex)
 					{
@@ -57,9 +68,10 @@ public class CorePlugin extends ChunkStoriesPlugin {
 					player.sendMessage("#FF969BPlayer \"" + a[2] + " can't be found.");
 					return true;
 				}
-				ItemPile itemPile = new ItemPile(type, amount);
+				ItemPile itemPile = new ItemPile(type, info);
+				itemPile.amount = amount;
 				//player.sendMessage("#FF969B" + to.getControlledEntity());
-				to.getControlledEntity().inventory.addItemPile(itemPile);
+				to.getControlledEntity().getInventory().addItemPile(itemPile);
 				player.sendMessage("#FF969BGave " + itemPile + " to " + to);
 			}
 		}
