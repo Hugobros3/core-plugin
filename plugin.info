@@ -1,7 +1,10 @@
 name: Core plugin
 authors: Gobrosse
-version: 1.0
+version: 1.1
 main: xyz.chunkstories.coreplugin.CorePlugin
 
 command: demo
 command: tp
+command: give
+command: clear
+command: time
