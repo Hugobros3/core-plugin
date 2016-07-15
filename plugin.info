@@ -8,3 +8,4 @@ command: tp
 command: give
 command: clear
 command: time
+command: clear
