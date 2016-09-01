@@ -8,7 +8,7 @@ import io.xol.chunkstories.api.Location;
 import io.xol.chunkstories.api.entity.interfaces.EntityWithInventory;
 import io.xol.chunkstories.api.item.ItemType;
 import io.xol.chunkstories.item.ItemPile;
-import io.xol.chunkstories.item.ItemsList;
+import io.xol.chunkstories.item.ItemTypes;
 import io.xol.chunkstories.server.Server;
 
 //(c) 2015-2016 XolioWare Interactive
@@ -52,10 +52,10 @@ public class CorePlugin extends ChunkStoriesPlugin {
 						info[i] = itemCallS[i+1];
 				}
 				
-				type = ItemsList.getItemTypeByName(itemCall);
+				type = ItemTypes.getItemTypeByName(itemCall);
 				if (type == null) {
 					try{
-						type = ItemsList.getItemTypeById(Integer.parseInt(itemCall));
+						type = ItemTypes.getItemTypeById(Integer.parseInt(itemCall));
 					}
 					catch(NumberFormatException ex)
 					{
