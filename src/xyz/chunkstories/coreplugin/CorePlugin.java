@@ -32,12 +32,12 @@ public class CorePlugin extends ChunkStoriesPlugin {
 		if ((e instanceof Player)) {
 			Player player = (Player) e;
 			
-			if (cmd.equals("clear")) {
+			if (cmd.equals("clear") && e.hasPermission("server.admin")) {
 				player.sendMessage("#FF969BRemoving " + ((EntityWithInventory) player.getControlledEntity()).getInventory().size()
 						+ " items from your inventory.");
 				((EntityWithInventory) player.getControlledEntity()).getInventory().clear();
 				
-			} else if (cmd.equals("give")) {
+			} else if (cmd.equals("give") && e.hasPermission("server.admin")) {
 				if (a.length == 0) {
 					player.sendMessage("#FF969BSyntax : /give <item> [amount] [to]");
 					return true;
@@ -114,7 +114,7 @@ public class CorePlugin extends ChunkStoriesPlugin {
 				((EntityWithInventory) to.getControlledEntity()).getInventory().addItemPile(itemPile);
 				player.sendMessage("#FF969BGave " + itemPile + " to " + to);
 			}
-			else if (cmd.equals("tp")) {
+			else if (cmd.equals("tp") && e.hasPermission("server.admin")) {
 				Player who = (Player) e;
 				Location to = null;
 				
@@ -165,7 +165,7 @@ public class CorePlugin extends ChunkStoriesPlugin {
 					who.setLocation(to);
 				}
 			}
-			else if (cmd.equals("time")) {
+			else if (cmd.equals("time") && e.hasPermission("server.admin")) {
 				if(a.length == 1)
 				{
 					long newTime = Long.parseLong(a[0]);
@@ -175,7 +175,7 @@ public class CorePlugin extends ChunkStoriesPlugin {
 				else
 					e.sendMessage("#82FFDBSyntax : /time [0-10000]");
 			}
-			else if (cmd.equals("weather")) {
+			else if (cmd.equals("weather") && e.hasPermission("server.admin")) {
 				if(a.length == 1)
 				{
 					float overcastFactor = Float.parseFloat(a[0]);
