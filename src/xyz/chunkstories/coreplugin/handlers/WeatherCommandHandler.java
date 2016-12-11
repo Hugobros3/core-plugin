@@ -1,4 +1,4 @@
-package xyz.chunkstories.coreplugin;
+package xyz.chunkstories.coreplugin.handlers;
 
 import io.xol.chunkstories.api.plugin.commands.Command;
 import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
