@@ -30,7 +30,7 @@ public class WeatherCommandHandler implements CommandHandler {
 			player.getLocation().getWorld().setWeather(overcastFactor);
 		} else
 			emitter.sendMessage("#82FFDBSyntax : /weather [0.0 - 1.0]");
-		return false;
+		return true;
 	}
 
 }

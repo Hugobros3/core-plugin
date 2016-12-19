@@ -77,7 +77,10 @@ public class TpCommandHandler implements CommandHandler {
 		if (who != null && to != null) {
 			emitter.sendMessage("#FF8966Teleported to : " + to);
 			who.setLocation(to);
+			return true;
 		}
+		
+		emitter.sendMessage("#FF8966Usage: /tp [who] (<x> <y> <z>)|(to)");
 		
 		return true;
 	}
