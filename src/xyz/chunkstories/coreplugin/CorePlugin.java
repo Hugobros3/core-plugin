@@ -1,10 +1,10 @@
 package xyz.chunkstories.coreplugin;
 
+import io.xol.chunkstories.api.GameContext;
 import io.xol.chunkstories.api.plugin.ChunkStoriesPlugin;
 import io.xol.chunkstories.api.plugin.PluginInformation;
 import io.xol.chunkstories.api.plugin.commands.Command;
 import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
-import io.xol.chunkstories.api.plugin.context.PluginExecutionContext;
 
 import xyz.chunkstories.coreplugin.handlers.*;
 
@@ -13,11 +13,11 @@ import xyz.chunkstories.coreplugin.handlers.*;
 //http://xol.io
 
 public class CorePlugin extends ChunkStoriesPlugin {
-	public CorePlugin(PluginInformation pluginInformation, PluginExecutionContext pluginExecutionContext) {
+	public CorePlugin(PluginInformation pluginInformation, GameContext pluginExecutionContext) {
 		super(pluginInformation, pluginExecutionContext);
 	
 		this.getPluginManager().registerCommandHandler("tp", new TpCommandHandler(this));
-		this.getPluginManager().registerCommandHandler("give", new GiveCommandHandler());
+		this.getPluginManager().registerCommandHandler("give", new GiveCommandHandler(this.pluginExecutionContext.getContent()));
 		this.getPluginManager().registerCommandHandler("clear", new ClearCommandHandler());
 		this.getPluginManager().registerCommandHandler("time", new TimeCommandHandler());
 		this.getPluginManager().registerCommandHandler("weather", new WeatherCommandHandler());
