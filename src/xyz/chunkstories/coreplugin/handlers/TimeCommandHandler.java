@@ -31,7 +31,7 @@ public class TimeCommandHandler implements CommandHandler {
 			emitter.sendMessage("#82FFDBSet time to  :" + newTime);
 		} else
 			emitter.sendMessage("#82FFDBSyntax : /time [0-10000]");
-		return false;
+		return true;
 	}
 
 }
