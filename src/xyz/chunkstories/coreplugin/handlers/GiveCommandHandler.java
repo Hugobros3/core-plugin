@@ -3,17 +3,17 @@ package xyz.chunkstories.coreplugin.handlers;
 import io.xol.chunkstories.api.Content;
 import io.xol.chunkstories.api.entity.interfaces.EntityWithInventory;
 import io.xol.chunkstories.api.item.Item;
+import io.xol.chunkstories.api.item.ItemPile;
 import io.xol.chunkstories.api.item.ItemType;
 import io.xol.chunkstories.api.plugin.commands.Command;
 import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
 import io.xol.chunkstories.api.plugin.commands.CommandHandler;
 import io.xol.chunkstories.api.server.Player;
+import io.xol.chunkstories.api.server.ServerInterface;
 import io.xol.chunkstories.api.voxel.Voxel;
 import io.xol.chunkstories.core.item.ItemVoxel;
-import io.xol.chunkstories.item.ItemPile;
-import io.xol.chunkstories.server.Server;
 
-//(c) 2015-2016 XolioWare Interactive
+//(c) 2015-2017 XolioWare Interactive
 //http://chunkstories.xyz
 //http://xol.io
 
@@ -101,7 +101,12 @@ public class GiveCommandHandler implements CommandHandler {
 			amount = Integer.parseInt(arguments[1]);
 		}
 		if (arguments.length >= 3) {
-			to = Server.getInstance().getPlayer(arguments[2]);
+			if(gameContent instanceof ServerInterface)
+				to = ((ServerInterface)gameContent).getPlayerByName(arguments[2]);
+			else {
+				player.sendMessage("#FF969BThis is a singleplayer world - there are no other players");
+				return true;
+			}
 		}
 		if (to == null) {
 			player.sendMessage("#FF969BPlayer \"" + arguments[2] + " can't be found.");
