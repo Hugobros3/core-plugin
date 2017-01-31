@@ -9,6 +9,7 @@ import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
 import io.xol.chunkstories.api.plugin.commands.CommandHandler;
 import io.xol.chunkstories.api.server.ServerInterface;
 import io.xol.chunkstories.api.world.WorldMaster;
+
 import xyz.chunkstories.coreplugin.handlers.*;
 
 //(c) 2015-2017 XolioWare Interactive
@@ -28,14 +29,30 @@ public class CorePlugin extends ChunkStoriesPlugin {
 			this.getPluginManager().registerCommandHandler("clear", new ClearCommandHandler());
 			this.getPluginManager().registerCommandHandler("time", new TimeCommandHandler());
 			this.getPluginManager().registerCommandHandler("weather", new WeatherCommandHandler());
+			this.getPluginManager().registerCommandHandler("spawn", new SpawnCommandHandler(this));
+			this.getPluginManager().registerCommandHandler("setSpawn", new SpawnCommandHandler(this));
+			this.getPluginManager().registerCommandHandler("spawnEntity", new SpawnEntityCommandHandler(this));
+			this.getPluginManager().registerCommandHandler("fly", new FlyCommandHandler(this));
+			this.getPluginManager().registerCommandHandler("creative", new CreativeCommandHandler(this));
+			this.getPluginManager().registerCommandHandler("food", new FoodCommandHandler(this));
+			this.getPluginManager().registerCommandHandler("health", new HealthCommandHandler(this));
 		}
 		else
 		{
-			this.getPluginManager().registerCommandHandler("tp", new FakeCommandHandler());
+			System.out.println("Disabled because of ");
+			//If the plugin is disabled, we make sure all commands return false and are forwarded 
+			for(Command command : pluginInformation.getCommands())
+			{
+				this.getPluginManager().registerCommandHandler(command.getName(), new FakeCommandHandler());
+			}
+			
+			/*this.getPluginManager().registerCommandHandler("tp", new FakeCommandHandler());
 			this.getPluginManager().registerCommandHandler("give", new FakeCommandHandler());
 			this.getPluginManager().registerCommandHandler("clear", new FakeCommandHandler());
 			this.getPluginManager().registerCommandHandler("time", new FakeCommandHandler());
 			this.getPluginManager().registerCommandHandler("weather", new FakeCommandHandler());
+			this.getPluginManager().registerCommandHandler("spawn", new FakeCommandHandler());
+			this.getPluginManager().registerCommandHandler("setSpawn", new FakeCommandHandler());*/
 		}
 	}
 
@@ -55,10 +72,5 @@ public class CorePlugin extends ChunkStoriesPlugin {
 
 	public void onDisable() {
 		System.out.println("Disabling Core plugin");
-	}
-
-	public boolean handleCommand(CommandEmitter emitter, Command cmd, String[] arguments) {
-		emitter.sendMessage("Should not happen :/");
-		return true;
 	}
 }

@@ -10,6 +10,7 @@ import io.xol.chunkstories.api.server.Player;
 //http://chunkstories.xyz
 //http://xol.io
 
+/** Removes all items from inventory */
 public class ClearCommandHandler implements CommandHandler {
 
 	@Override
