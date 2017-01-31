@@ -1,25 +1,31 @@
 package xyz.chunkstories.coreplugin.handlers;
 
+import io.xol.chunkstories.api.Content;
 import io.xol.chunkstories.api.entity.interfaces.EntityWithInventory;
 import io.xol.chunkstories.api.item.Item;
+import io.xol.chunkstories.api.item.ItemPile;
 import io.xol.chunkstories.api.item.ItemType;
 import io.xol.chunkstories.api.plugin.commands.Command;
 import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
 import io.xol.chunkstories.api.plugin.commands.CommandHandler;
 import io.xol.chunkstories.api.server.Player;
+import io.xol.chunkstories.api.server.ServerInterface;
 import io.xol.chunkstories.api.voxel.Voxel;
 import io.xol.chunkstories.core.item.ItemVoxel;
-import io.xol.chunkstories.item.ItemPile;
-import io.xol.chunkstories.item.ItemTypes;
-import io.xol.chunkstories.server.Server;
-import io.xol.chunkstories.voxel.Voxels;
 
-//(c) 2015-2016 XolioWare Interactive
+//(c) 2015-2017 XolioWare Interactive
 //http://chunkstories.xyz
 //http://xol.io
 
 public class GiveCommandHandler implements CommandHandler {
 
+	public GiveCommandHandler(Content gameContent)
+	{
+		this.gameContent = gameContent;
+	}
+	
+	private final Content gameContent;
+	
 	@Override
 	public boolean handleCommand(CommandEmitter emitter, Command command, String[] arguments) {
 		if(!emitter.hasPermission("server.tp"))
@@ -45,11 +51,11 @@ public class GiveCommandHandler implements CommandHandler {
 		String itemName = arguments[0];
 
 		// Look for the item first
-		ItemType type = ItemTypes.getItemTypeByName(itemName);
+		ItemType type = gameContent.items().getItemTypeByName(itemName);
 		if (type == null) {
 			// Try me bitch
 			try {
-				type = ItemTypes.getItemTypeById(Integer.parseInt(itemName));
+				type = gameContent.items().getItemTypeById(Integer.parseInt(itemName));
 			} catch (NumberFormatException ex) {
 			}
 		}
@@ -67,18 +73,18 @@ public class GiveCommandHandler implements CommandHandler {
 			}
 
 			// Try to find a matching voxel
-			Voxel voxel = Voxels.getVoxelTypeByName(itemName);
+			Voxel voxel = gameContent.voxels().getVoxelByName(itemName);
 			if (voxel == null) {
 				// Try me bitch
 				try {
-					voxel = Voxels.get(Integer.parseInt(itemName));
+					voxel = gameContent.voxels().getVoxelById(Integer.parseInt(itemName));
 				} catch (NumberFormatException ex) {
 				}
 			}
 
 			if (voxel != null) {
 				// Spawn new itemPile in his inventory
-				ItemVoxel itemVoxel = (ItemVoxel) ItemTypes.getItemTypeByName("item_voxel").newItem();
+				ItemVoxel itemVoxel = (ItemVoxel) gameContent.items().getItemTypeByName("item_voxel").newItem();
 				itemVoxel.voxel = voxel;
 				itemVoxel.voxelMeta = voxelMeta;
 
@@ -95,7 +101,12 @@ public class GiveCommandHandler implements CommandHandler {
 			amount = Integer.parseInt(arguments[1]);
 		}
 		if (arguments.length >= 3) {
-			to = Server.getInstance().getPlayer(arguments[2]);
+			if(gameContent instanceof ServerInterface)
+				to = ((ServerInterface)gameContent).getPlayerByName(arguments[2]);
+			else {
+				player.sendMessage("#FF969BThis is a singleplayer world - there are no other players");
+				return true;
+			}
 		}
 		if (to == null) {
 			player.sendMessage("#FF969BPlayer \"" + arguments[2] + " can't be found.");

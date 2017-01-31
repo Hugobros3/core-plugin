@@ -8,7 +8,7 @@ import io.xol.chunkstories.api.server.Player;
 import io.xol.chunkstories.api.server.ServerInterface;
 import xyz.chunkstories.coreplugin.CorePlugin;
 
-//(c) 2015-2016 XolioWare Interactive
+//(c) 2015-2017 XolioWare Interactive
 //http://chunkstories.xyz
 //http://xol.io
 
@@ -88,7 +88,7 @@ public class TpCommandHandler implements CommandHandler {
 	private Player getPlayer(String string) {
 		
 		if(corePlugin.getPluginExecutionContext() instanceof ServerInterface)
-			return ((ServerInterface)corePlugin.getPluginExecutionContext()).getPlayer(string);
+			return ((ServerInterface)corePlugin.getPluginExecutionContext()).getPlayerByName(string);
 		
 		return null;
 	}
