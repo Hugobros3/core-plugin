@@ -116,7 +116,7 @@ public class GiveCommandHandler implements CommandHandler {
 		itemPile.setAmount(amount);
 
 		((EntityWithInventory) to.getControlledEntity()).getInventory().addItemPile(itemPile);
-		player.sendMessage("#FF969BGave " + itemPile + " to " + to);
+		player.sendMessage("#FF969BGave " + (amount > 1 ? amount + "x " : "" ) + "#4CFF00" + itemPile.getItem().getName() + " #FF969Bto " + to.getDisplayName());
 
 		return true;
 	}
