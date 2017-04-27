@@ -28,7 +28,7 @@ public class SpawnCommandHandler implements CommandHandler {
 			emitter.sendMessage("You need to be a player to use this command.");
 			return true;
 		}
-
+		
 		Player player = (Player) emitter;
 		if(command.getName().equals("spawn"))
 		{
@@ -44,7 +44,7 @@ public class SpawnCommandHandler implements CommandHandler {
 			emitter.sendMessage("#00FFD0Teleported to spawn");
 			return true;
 		}
-		else if(command.getName().equals("setSpawn"))
+		else if(command.getName().equals("setspawn"))
 		{
 			if(!emitter.hasPermission("world.spawn.set"))
 			{
@@ -56,6 +56,7 @@ public class SpawnCommandHandler implements CommandHandler {
 			player.getWorld().setDefaultSpawnLocation(loc);
 			
 			emitter.sendMessage("#00FFD0Set default spawn to : "+loc);
+			return true;
 		}
 
 		return false;

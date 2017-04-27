@@ -30,7 +30,7 @@ public class CorePlugin extends ChunkStoriesPlugin {
 			this.getPluginManager().registerCommandHandler("time", new TimeCommandHandler());
 			this.getPluginManager().registerCommandHandler("weather", new WeatherCommandHandler());
 			this.getPluginManager().registerCommandHandler("spawn", new SpawnCommandHandler(this));
-			this.getPluginManager().registerCommandHandler("setSpawn", new SpawnCommandHandler(this));
+			this.getPluginManager().registerCommandHandler("setspawn", new SpawnCommandHandler(this));
 			this.getPluginManager().registerCommandHandler("spawnEntity", new SpawnEntityCommandHandler(this));
 			this.getPluginManager().registerCommandHandler("fly", new FlyCommandHandler(this));
 			this.getPluginManager().registerCommandHandler("creative", new CreativeCommandHandler(this));
