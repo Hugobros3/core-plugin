@@ -13,7 +13,7 @@ public class TimeCommandHandler implements CommandHandler {
 
 	@Override
 	public boolean handleCommand(CommandEmitter emitter, Command command, String[] arguments) {
-		if(!emitter.hasPermission("server.tp"))
+		if(!emitter.hasPermission("world.time"))
 		{
 			emitter.sendMessage("You don't have the permission.");
 			return true;

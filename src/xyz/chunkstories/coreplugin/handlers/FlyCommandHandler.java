@@ -32,7 +32,7 @@ public class FlyCommandHandler implements CommandHandler {
 
 		Player player = (Player) emitter;
 		
-		if(!emitter.hasPermission("self.togglefly"))
+		if(!emitter.hasPermission("self.toggleFly"))
 		{
 			emitter.sendMessage("You don't have the permission.");
 			return true;
