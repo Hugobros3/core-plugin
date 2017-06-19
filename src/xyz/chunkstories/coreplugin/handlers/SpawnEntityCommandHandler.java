@@ -3,11 +3,11 @@ package xyz.chunkstories.coreplugin.handlers;
 import io.xol.chunkstories.api.Location;
 import io.xol.chunkstories.api.entity.Entity;
 import io.xol.chunkstories.api.entity.EntityType;
+import io.xol.chunkstories.api.player.Player;
 import io.xol.chunkstories.api.plugin.ChunkStoriesPlugin;
 import io.xol.chunkstories.api.plugin.commands.Command;
 import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
 import io.xol.chunkstories.api.plugin.commands.CommandHandler;
-import io.xol.chunkstories.api.server.Player;
 
 //(c) 2015-2017 XolioWare Interactive
 //http://chunkstories.xyz

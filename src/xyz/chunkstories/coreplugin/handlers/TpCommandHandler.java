@@ -1,10 +1,10 @@
 package xyz.chunkstories.coreplugin.handlers;
 
 import io.xol.chunkstories.api.Location;
+import io.xol.chunkstories.api.player.Player;
 import io.xol.chunkstories.api.plugin.commands.Command;
 import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
 import io.xol.chunkstories.api.plugin.commands.CommandHandler;
-import io.xol.chunkstories.api.server.Player;
 import io.xol.chunkstories.api.server.ServerInterface;
 import xyz.chunkstories.coreplugin.CorePlugin;
 
