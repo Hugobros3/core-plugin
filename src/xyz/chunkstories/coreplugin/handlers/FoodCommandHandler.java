@@ -1,14 +1,12 @@
 package xyz.chunkstories.coreplugin.handlers;
 
 import io.xol.chunkstories.api.entity.Entity;
-import io.xol.chunkstories.api.entity.EntityLiving;
-import io.xol.chunkstories.api.entity.interfaces.EntityFlying;
+import io.xol.chunkstories.api.entity.interfaces.EntityFeedable;
 import io.xol.chunkstories.api.player.Player;
 import io.xol.chunkstories.api.plugin.ChunkStoriesPlugin;
 import io.xol.chunkstories.api.plugin.commands.Command;
 import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
 import io.xol.chunkstories.api.plugin.commands.CommandHandler;
-import io.xol.chunkstories.core.entity.EntityPlayer;
 
 //(c) 2015-2017 XolioWare Interactive
 //http://chunkstories.xyz
@@ -60,9 +58,9 @@ public class FoodCommandHandler implements CommandHandler {
 		float food = Float.parseFloat(arguments[0]);
 		
 		Entity controlledEntity = player.getControlledEntity();
-		if (controlledEntity != null && controlledEntity instanceof EntityPlayer)
+		if (controlledEntity != null && controlledEntity instanceof EntityFeedable)
 		{
-			((EntityPlayer)controlledEntity).setFoodLevel(food);
+			((EntityFeedable)controlledEntity).setFoodLevel(food);
 			player.sendMessage("Food set to: " + food);
 			return true;
 		}
