@@ -4,10 +4,11 @@ apply plugin: 'java-library'
 apply plugin: 'maven'
 
 //TODO Make version depend on Git ?
-version = '1.3.1'
+version = '1.0.1'
 description = 'Core plugin to provide basic utility functionality for clients and servers'
 
 repositories {
+	mavenLocal();
 	mavenCentral();
 	maven {
 		url "http://maven.xol.io/repository/public/"
@@ -30,5 +31,5 @@ jar {
 }
 	
 dependencies {
-	compile group: 'io.xol.chunkstories', name: 'api', version: '103'
+	compile group: 'io.xol.chunkstories', name: 'api', version: '108'
 }

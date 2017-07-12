@@ -71,18 +71,8 @@ public class SpawnEntityCommandHandler implements CommandHandler {
 		}
 		else
 		{
-			//It contains a dot. Classname ?
-			if(arguments[0].contains("."))
-			{
-				String className = arguments[0];
-				entityType = plugin.getPluginExecutionContext().getContent().entities().getEntityTypeByClassname(className);
-			}
-			//Just a regular name
-			else
-			{
-				String entityName = arguments[0];
-				entityType = plugin.getPluginExecutionContext().getContent().entities().getEntityTypeByName(entityName);
-			}
+			String entityName = arguments[0];
+			entityType = plugin.getPluginExecutionContext().getContent().entities().getEntityTypeByName(entityName);
 		}
 		
 		if(entityType == null)
