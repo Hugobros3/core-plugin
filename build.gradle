@@ -31,5 +31,5 @@ jar {
 }
 	
 dependencies {
-	compile group: 'io.xol.chunkstories', name: 'api', version: '108'
+	compile group: 'io.xol.chunkstories', name: 'api', version: '113'
 }
